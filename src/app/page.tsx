@@ -37,7 +37,9 @@ export default function RelaxApp() {
     if (audioRef.current) {
       audioRef.current.src = themes[current].sound;
       if (isPlaying) {
-        audioRef.current.play();
+        audioRef.current
+          .play()
+          .catch((err) => console.warn("Audio play error:", err));
       }
     }
   }, [current, isPlaying]);
@@ -47,7 +49,9 @@ export default function RelaxApp() {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play();
+        audioRef.current
+          .play()
+          .catch((err) => console.warn("Audio play error:", err));
       }
     }
     setIsPlaying((prev) => !prev);
